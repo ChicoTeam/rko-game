@@ -1,0 +1,29 @@
+This is a project that Russ, Kyle, and Oriah are working on for the upcoming mobile app hackathon. 
+
+The idea is to have an RPG game that teaches you how to program. 
+
+It is not currently working. 
+
+Below are ideas for levels and lessons within those levels.
+
+Levels:
+1. Home
+	Lessons:
+	0. Basic game controls (movement, object inspection, dialog)
+	1. Hello World
+	2. Math expressions (1+1, etc.)
+	3. Variable assignment (ints, strings)
+2. Outside
+	Lessons: 
+	0. More on game interaction (items, level inspection, etc.)
+	1. Conditional statements (== != && ||)
+	2. Control expressions (if/else)
+	3. More on variables (arrays, structs)
+3. Traveling somewhere
+	Lessons:
+	0. How to kill an infinite loop
+	1. Looping
+	2. Functions
+4. At a castle/dungeon/boss
+	Lessons:
+	1. Events
