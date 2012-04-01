@@ -4,14 +4,11 @@
 	
 	------					*/
 
+// define melonJS app
 var jsApp	=
 {
 	
-	/* ---
-	
-		Initialize the jsApp
-		
-		---			*/
+	// Initialize the jsApp
 	onload: function()
 	{
 		
@@ -32,13 +29,10 @@ var jsApp	=
 	},
 	
 	
-	/* ---
-	
-		callback when everything is loaded
-		
-		---										*/
+	//	callback when everything is loaded								
 	loaded: function ()
 	{
+
 		// set the "Play/Ingame" Screen Object
 		me.state.set(me.state.PLAY, this);
 
@@ -53,46 +47,45 @@ var jsApp	=
 		
 	},
 
+
 	reset: function()
 	{	
 		me.game.reset();
+
 		// load a level
 		me.levelDirector.loadLevel("village");		
 	},
 
-	
-	/* ---
-	
-		 rendering loop
-		
-		---										*/
+
+	// rendering loop								
 	onUpdateFrame: function()
 	{
+		var speed = 3;
 	
 		// navigate the map :)
 		if (me.input.isKeyPressed('left'))
 		{
-			me.game.viewport.move(-(me.game.currentLevel.tilewidth/2),0);
+			me.game.viewport.move(-speed,0);
 			// force redraw
 			me.game.repaint();
 			
 		}
 		else if (me.input.isKeyPressed('right'))
       {
-			me.game.viewport.move(me.game.currentLevel.tilewidth/2,0);		
+			me.game.viewport.move(speed,0);		
 			// force redraw
 			me.game.repaint();
 		}
 				
 		if (me.input.isKeyPressed('up'))
 		{
-			me.game.viewport.move(0,-(me.game.currentLevel.tileheight/2));
+			me.game.viewport.move(0,-speed);
 			// force redraw
 			me.game.repaint();
 		}
 		else if (me.input.isKeyPressed('down'))
       {
-			me.game.viewport.move(0,me.game.currentLevel.tileheight/2);
+			me.game.viewport.move(0,speed);
 			// force redraw
 			me.game.repaint();
 		}
@@ -107,7 +100,11 @@ var jsApp	=
 }; // jsApp
 
 
-//bootstrap :)
+
+
+
+
+//bootstrap
 window.onReady(function() 
 {
 	jsApp.onload();
