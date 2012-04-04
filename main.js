@@ -7,10 +7,17 @@
 // define melonJS app
 var jsApp	=
 {
-	
+	worldObjects: {test:"a test object"},
+
+	jsEval: function(codeString) 
+	{
+		with(this.worldObjects) {return eval(codeString);}
+	},
+
 	// Initialize the jsApp
 	onload: function()
 	{
+		// alert(this.jsEval('fun'));
 		
 		if (!me.video.init('jsapp', 400, 280))
 		{
@@ -41,6 +48,7 @@ var jsApp	=
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.UP,	 "up");
 		me.input.bindKey(me.input.KEY.DOWN,	 "down");
+		me.input.bindKey(me.input.KEY.C,	 "console");
 
 		// start the game
 		me.state.change(me.state.PLAY);
@@ -86,6 +94,12 @@ var jsApp	=
 		else if (me.input.isKeyPressed('down'))
       {
 			me.game.viewport.move(0,speed);
+			// force redraw
+			me.game.repaint();
+		}
+		else if (me.input.isKeyPressed('console'))
+      {
+      		this.jsEval(prompt("Enter code"));
 			// force redraw
 			me.game.repaint();
 		}
