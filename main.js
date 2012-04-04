@@ -5,9 +5,22 @@
 	------					*/
 
 
-// create a "text object"
-// to display the score value
-HUDtextObject = me.HUD_Item.extend(
+// object for testing
+var Person = Object.extend(
+{
+   init: function(isDancing)
+   {
+      this.dancing = isDancing;
+   },
+   dance: function()
+   {
+      return this.dancing;
+   }
+});
+
+
+// object that can draw text on screen
+var HUDtextObject = me.HUD_Item.extend(
 {	
    // constructor
    init: function(x, y)
@@ -47,6 +60,7 @@ var jsApp	=
 	{
 		// put melonjs into worldObjects for hacking fun
 		this.worldObjects.me = me;
+		this.worldObjects.person = new Person(false);
 		
 		if (!me.video.init('jsapp', 400, 280))
 		{
@@ -72,6 +86,15 @@ var jsApp	=
 		// set the "Play/Ingame" Screen Object
 		me.state.set(me.state.PLAY, this);
 
+		// add our player entity in the entity pool
+   		me.entityPool.add("mainPlayer", PlayerEntity);
+
+		// add a default HUD to the game mngr (with no background)
+		me.game.addHUD(0,0,400,280);
+
+		// add the HUD text item
+		me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));	
+
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
@@ -87,17 +110,10 @@ var jsApp	=
 
 	reset: function()
 	{	
-
-// add a default HUD to the game mngr (with no background)
-me.game.addHUD(0,0,400,280);
-// add the HUD text item
-me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));
-
-
 		me.game.reset();
 
 		// load a level
-		me.levelDirector.loadLevel("village");		
+		me.levelDirector.loadLevel("village");	
 	},
 
 
@@ -107,7 +123,7 @@ me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));
 		var speed = 3;
 	
 		// navigate the map :)
-		if (me.input.isKeyPressed('left'))
+		/*if (me.input.isKeyPressed('left'))
 		{
 			me.game.viewport.move(-speed,0);
 			// force redraw
@@ -133,12 +149,18 @@ me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));
 			// force redraw
 			me.game.repaint();
 		}
-		else if (me.input.isKeyPressed('console'))
+		else*/ if (me.input.isKeyPressed('console'))
       {
       		var code = prompt("Enter code");
       		var result = this.jsEval(code);
-      		// alert(result);
+
+      		if (typeof result == "object") {
+      			result = Object.keys(result).toString();
+      		}
+
       		me.game.HUD.setItemValue("hud_text", result);
+      		// force redraw
+			me.game.repaint();
 		}
 	
 		// update our sprites
