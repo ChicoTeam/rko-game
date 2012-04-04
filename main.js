@@ -4,20 +4,49 @@
 	
 	------					*/
 
+
+// create a "text object"
+// to display the score value
+HUDtextObject = me.HUD_Item.extend(
+{	
+   // constructor
+   init: function(x, y)
+   {
+      // call the parent constructor
+      this.parent(x, y);
+      // create a font
+      this.font = new me.Font("Courier New", 14, "black", "center");
+   },
+   // draw function
+   draw : function (context, x, y)
+   {
+      this.font.draw (context, this.value, this.pos.x +x, this.pos.y +y);
+   }
+});
+
+
+
 // define melonJS app
 var jsApp	=
 {
-	worldObjects: {test:"a test object"},
+	worldObjects: {},
 
 	jsEval: function(codeString) 
 	{
-		with(this.worldObjects) {return eval(codeString);}
+		// try/catch so errors are handled in-game
+		try{
+			with(this.worldObjects) {return eval(codeString);}
+		}
+		catch(e) {
+			return e.message;
+		}
 	},
 
 	// Initialize the jsApp
 	onload: function()
 	{
-		// alert(this.jsEval('fun'));
+		// put melonjs into worldObjects for hacking fun
+		this.worldObjects.me = me;
 		
 		if (!me.video.init('jsapp', 400, 280))
 		{
@@ -58,6 +87,13 @@ var jsApp	=
 
 	reset: function()
 	{	
+
+// add a default HUD to the game mngr (with no background)
+me.game.addHUD(0,0,400,280);
+// add the HUD text item
+me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));
+
+
 		me.game.reset();
 
 		// load a level
@@ -99,9 +135,10 @@ var jsApp	=
 		}
 		else if (me.input.isKeyPressed('console'))
       {
-      		this.jsEval(prompt("Enter code"));
-			// force redraw
-			me.game.repaint();
+      		var code = prompt("Enter code");
+      		var result = this.jsEval(code);
+      		// alert(result);
+      		me.game.HUD.setItemValue("hud_text", result);
 		}
 	
 		// update our sprites
