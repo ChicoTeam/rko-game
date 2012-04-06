@@ -5,21 +5,37 @@
 	------					*/
 
 
-// object for testing
-var Person = Object.extend(
+// define custom base object
+var Obj = Object.extend(
 {
-   init: function(isDancing)
-   {
-      this.dancing = isDancing;
-   },
-   dance: function()
-   {
-      return this.dancing;
-   }
+	init: function() {
+		
+	},
+	look: function() {
+		var result = "";
+
+		for(var key in this) {
+			if(typeof this[key] === "function") {
+				if(result.length > 0) {
+					result += ", ";
+				}
+				result += key + "()";
+			}
+		}
+
+		return result;
+	},
+	size: 10,
+	makeBigger: function(size) {
+		if(!size)
+			return "Usage: makeBigger(size)";
+		else
+			return this.size + size;
+	}
 });
 
 
-// object that can draw text on screen
+// define object that can draw text on screen
 var HUDtextObject = me.HUD_Item.extend(
 {	
    // constructor
@@ -28,7 +44,7 @@ var HUDtextObject = me.HUD_Item.extend(
       // call the parent constructor
       this.parent(x, y);
       // create a font
-      this.font = new me.Font("Courier New", 14, "black", "center");
+      this.font = new me.Font("Courier New", 14, "white", "center");
    },
    // draw function
    draw : function (context, x, y)
@@ -60,8 +76,9 @@ var jsApp	=
 	{
 		// put melonjs into worldObjects for hacking fun
 		this.worldObjects.me = me;
-		this.worldObjects.person = new Person(false);
-		
+
+		this.worldObjects.o = new Obj();
+
 		if (!me.video.init('jsapp', 400, 280))
 		{
 			alert("Sorry but your browser does not support html 5 canvas. Please try with another one!");
@@ -90,10 +107,10 @@ var jsApp	=
    		me.entityPool.add("mainPlayer", PlayerEntity);
 
 		// add a default HUD to the game mngr (with no background)
-		me.game.addHUD(0,0,400,280);
+		me.game.addHUD(0,0,400,20,"black");
 
 		// add the HUD text item
-		me.game.HUD.addItem("hud_text", new HUDtextObject(10,20));	
+		me.game.HUD.addItem("hud_text", new HUDtextObject(4,14));	
 
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
@@ -149,7 +166,8 @@ var jsApp	=
 			// force redraw
 			me.game.repaint();
 		}
-		else*/ if (me.input.isKeyPressed('console'))
+		else*/ 
+		if (me.input.isKeyPressed('console'))
       {
       		var code = prompt("Enter code");
       		var result = this.jsEval(code);
@@ -158,7 +176,13 @@ var jsApp	=
       			result = Object.keys(result).toString();
       		}
 
+      		if (result.length < 1) {
+      			result = "hmm, nothing happened...";
+      		}
+
+      		// put result text on screen
       		me.game.HUD.setItemValue("hud_text", result);
+
       		// force redraw
 			me.game.repaint();
 		}

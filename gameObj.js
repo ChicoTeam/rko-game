@@ -22,7 +22,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         // set the walking & jumping speed
         this.setVelocity(4, 4);
 
-        this.gravity = 0.001;
+        this.gravity = 0;
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -35,7 +35,7 @@ var PlayerEntity = me.ObjectEntity.extend({
      * make the entity move left or right
      * @param {Boolean} left will automatically flip horizontally the entity sprite
      */
-    doWalk : function(direction) {
+    doWalk: function(direction) {
 
         switch(direction) {
             case 'up':
