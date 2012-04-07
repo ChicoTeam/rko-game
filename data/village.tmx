@@ -1528,7 +1528,19 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Object Layer 1" width="25" height="15">
+ <objectgroup name="EnemyEntities" width="25" height="15">
+  <object name="EnemyEntity" x="161" y="259" width="28" height="26">
+   <properties>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
+  <object name="EnemyEntity" x="449" y="260" width="30" height="27">
+   <properties>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="MainCharacter" width="64" height="64">
   <object name="mainPlayer" x="601" y="207">
    <properties>
     <property name="image" value="gripe_run_right"/>

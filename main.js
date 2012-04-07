@@ -67,7 +67,7 @@ var jsApp	=
 			with(this.worldObjects) {return eval(codeString);}
 		}
 		catch(e) {
-			return e.message;
+			return 'Oops: ' + e.message;
 		}
 	},
 
@@ -104,13 +104,15 @@ var jsApp	=
 		me.state.set(me.state.PLAY, this);
 
 		// add our player entity in the entity pool
-   		me.entityPool.add("mainPlayer", PlayerEntity);
+   		me.entityPool.add("mainplayer", PlayerEntity);
+   		me.entityPool.add("enemyentity", EnemyEntity);
 
 		// add a default HUD to the game mngr (with no background)
 		me.game.addHUD(0,0,400,20,"black");
 
 		// add the HUD text item
 		me.game.HUD.addItem("hud_text", new HUDtextObject(4,14));	
+		me.game.HUD.setItemValue("hud_text", "");
 
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
@@ -172,13 +174,22 @@ var jsApp	=
       		var code = prompt("Enter code");
       		var result = this.jsEval(code);
 
-      		if (typeof result == "object") {
+      		console.log(result);//TODO: remove this for release
+
+      		if (result === undefined || result === null) {
+      			result = "";
+      		}
+
+      		if (typeof result === "object") {
       			result = Object.keys(result).toString();
       		}
 
       		if (result.length < 1) {
       			result = "hmm, nothing happened...";
       		}
+
+      		// add text to player object
+      		me.game.getEntityByName('mainplayer')[0].says = result;      			
 
       		// put result text on screen
       		me.game.HUD.setItemValue("hud_text", result);
