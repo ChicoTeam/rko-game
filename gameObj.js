@@ -176,7 +176,8 @@ var EnemyEntity = me.ObjectEntity.extend({
         // only say something if it hasn't already been said
         if (this.saysLast !== this.says) {
             console.log(this.says);
-            me.game.HUD.setItemValue("hud_text", this.says);
+            $('#sandbox').show();
+            window.sandbox.model.evaluate("'" + this.says + "'");
         }
     },
  
