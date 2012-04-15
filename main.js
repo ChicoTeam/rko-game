@@ -121,6 +121,8 @@ var jsApp	=
 		me.input.bindKey(me.input.KEY.DOWN,	 "down");
 		me.input.bindKey(me.input.KEY.C,	 "console");
 
+        //enable mouse events NEW
+
 		// start the game
 		me.state.change(me.state.PLAY);
 		

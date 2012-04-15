@@ -15,7 +15,7 @@ var g_resources= [
 	    type: "image",
 	    src: "data/sprite/gripe_run_right.png"
 	},
-	// our enemty entity
+	// our enemy entity
 	{
 	    name: "wheelie_right",
 	    type: "image",
