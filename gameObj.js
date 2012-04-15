@@ -18,7 +18,8 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.setVelocity(4, 4);
 
         this.gravity = 0;
- 
+	
+       	this.updateColRect(8,48,-1,0);	
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
  
