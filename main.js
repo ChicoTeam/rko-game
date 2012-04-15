@@ -35,25 +35,6 @@ var Obj = Object.extend(
 });
 
 
-// define object that can draw text on screen
-var HUDtextObject = me.HUD_Item.extend(
-{	
-   // constructor
-   init: function(x, y)
-   {
-      // call the parent constructor
-      this.parent(x, y);
-      // create a font
-      this.font = new me.Font("Courier New", 14, "white", "center");
-   },
-   // draw function
-   draw : function (context, x, y)
-   {
-      this.font.draw (context, this.value, this.pos.x +x, this.pos.y +y);
-   }
-});
-
-
 
 // define melonJS app
 var jsApp	=
@@ -107,13 +88,6 @@ var jsApp	=
    		me.entityPool.add("mainplayer", PlayerEntity);
    		me.entityPool.add("enemyentity", EnemyEntity);
 
-		// add a default HUD to the game mngr (with no background)
-		me.game.addHUD(0,0,400,20,"black");
-
-		// add the HUD text item
-		me.game.HUD.addItem("hud_text", new HUDtextObject(4,14));	
-		me.game.HUD.setItemValue("hud_text", "");
-
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
@@ -142,62 +116,19 @@ var jsApp	=
 	onUpdateFrame: function()
 	{
 		var speed = 3;
-	
-		// navigate the map :)
-		/*if (me.input.isKeyPressed('left'))
-		{
-			me.game.viewport.move(-speed,0);
-			// force redraw
-			me.game.repaint();
-			
-		}
-		else if (me.input.isKeyPressed('right'))
-      {
-			me.game.viewport.move(speed,0);		
-			// force redraw
-			me.game.repaint();
-		}
-				
-		if (me.input.isKeyPressed('up'))
-		{
-			me.game.viewport.move(0,-speed);
-			// force redraw
-			me.game.repaint();
-		}
-		else if (me.input.isKeyPressed('down'))
-      {
-			me.game.viewport.move(0,speed);
-			// force redraw
-			me.game.repaint();
-		}
-		else*/ 
+
 		if (me.input.isKeyPressed('console'))
       {
-      		var code = prompt("Enter code");
-      		var result = this.jsEval(code);
-
-      		console.log(result);//TODO: remove this for release
-
-      		if (result === undefined || result === null) {
-      			result = "";
+      		if($('#sandbox').is(':visible')) {
+      			setTimeout(function(){
+      				$('#sandbox').hide();
+      			},150);
       		}
-
-      		if (typeof result === "object") {
-      			result = Object.keys(result).toString();
+      		else {
+      			setTimeout(function(){
+      				$('#sandbox').show();
+      			},150);     			
       		}
-
-      		if (result.length < 1) {
-      			result = "hmm, nothing happened...";
-      		}
-
-      		// add text to player object
-      		me.game.getEntityByName('mainplayer')[0].says = result;      			
-
-      		// put result text on screen
-      		me.game.HUD.setItemValue("hud_text", result);
-
-      		// force redraw
-			me.game.repaint();
 		}
 	
 		// update our sprites
