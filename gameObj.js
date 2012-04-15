@@ -178,6 +178,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             console.log(this.says);
             $('#sandbox').show();
             window.sandbox.model.evaluate("'" + this.says + "'");
+            // TODO: use window.sandbox.model.get('history')[length-1] to get last player input
         }
     },
  
