@@ -5,7 +5,7 @@
   <property name="Year" value="2009"/>
  </properties>
  <tileset firstgid="1" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../var/www/rko-game/data/free_tileset_version_10.png" width="480" height="1216"/>
+  <image source="free_tileset_version_10.png" width="480" height="1216"/>
   <tile id="460">
    <properties>
     <property name="type" value="solid"/>
