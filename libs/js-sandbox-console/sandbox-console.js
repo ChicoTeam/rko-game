@@ -163,7 +163,7 @@ var Sandbox = {
 			this.currentHistory = "";
 
 			// Set up the View Options
-			this.resultPrefix = opts.resultPrefix || "  => ";
+			this.resultPrefix = opts.resultPrefix || "  =>&nbsp;";
 			this.tabCharacter = opts.tabCharacter || "\t";
 			this.placeholder = opts.placeholder || "// type some javascript and hit enter (:help for info)";
 			this.helpText = opts.helpText || "type javascript commands into the console, hit enter to evaluate. \n[up/down] to scroll through history, ':clear' to reset it. \n[alt + return/up/down] for returns and multi-line editing.";

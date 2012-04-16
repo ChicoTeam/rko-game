@@ -23,26 +23,26 @@
 	background:#333;
 	color: #ccc;
 	background: #333;
-	padding:20px 20px 15px;
+	/*padding:20px 20px 15px;
 	-webkit-border-radius: 10px;
 	   -moz-border-radius: 10px;
-	        border-radius: 10px;
+	        border-radius: 10px;*/
 	max-width:640px;
 	margin: auto;
 }
 #sandbox pre.output {
 	display:block;
-	white-space:pre;
+	white-space:normal;
 	width:100%;
-	height:220px;
+	height:245px;
 	overflow-y:auto;
 	position:relative;
 	padding:0;
 	margin:0 0 10px;
 	border:0 none;
 }
-#sandbox pre.output span           { color:#f7f7f7; }
-#sandbox pre.output span.command   { color:#ccc; }
+#sandbox pre.output span           { color:#f7f7f7; display: inline-block; }
+#sandbox pre.output span.command   { color:#ccc; display: block;}
 #sandbox pre.output span.prefix    { color:#777; }
 #sandbox pre.output span.undefined { color:#777; }
 #sandbox pre.output span.string    { color:#99f; }
@@ -106,8 +106,8 @@
 #sandbox {
 	display: none;
 	position: absolute;
-	width:360px;
-	height:245px;
+	width:400px;
+	height:280px;
 	opacity: 0.8;
 	-moz-opacity: 0.8;
 	filter:alpha(opacity=8);

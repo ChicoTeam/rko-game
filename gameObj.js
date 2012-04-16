@@ -148,26 +148,29 @@ var EnemyEntity = me.ObjectEntity.extend({
         if (!obj.isInConveration) {
             this.step = 0;
             obj.isInConveration = true;
-            obj.saysLast = obj.says;
-
+ 
             $('#sandbox').show();
+            window.sandbox.model.destroy();
             window.sandbox.model.on('sync', function(){
-                obj.says = eval(_.last(window.sandbox.model.get('history')).result);
+                var lastHistory = _.last(window.sandbox.model.get('history'));
+                if(lastHistory) {
+                    var lastResult = lastHistory.result || "";
+                    obj.says = eval(lastResult);
+                }
             });
-
         }
         this.saysLast = this.says;
 
         // conversation steps
         switch(this.step) {
             case 0:
-                this.says = "Hi! (type 'Hi!' to say hi back)";
+                this.says = "Hi! (type \"Hi!\" to say hi back)";
                 if (obj.says == 'Hi!')
                     this.step++;
                 break;
             case 1:
-                this.says = "I'm Joe. What is your name?";
-                if (obj.says != 'Hi!')
+                this.says = "I\'m Joe. What is your name?";
+                if (obj.says != 'Hi!' && obj.says != obj.saysLast && typeof(obj.says) == "string" && obj.says.indexOf('Error') < 0)
                     this.step++;
                 break;
             case 2:
@@ -183,8 +186,14 @@ var EnemyEntity = me.ObjectEntity.extend({
         // only say something if it hasn't already been said
         if (this.saysLast !== this.says) {
             console.log(this.says);
-            window.sandbox.placeholder = this.says;
-            window.sandbox.render();
+            // $('#sandbox textarea[placeholder]').attr('placeholder', this.says);
+            // var command = "'"+this.says+"'";
+            window.sandbox.model.addHistory({
+                command : 'Joe says:',
+                result : this.says
+            });
+            window.sandbox.update();
+            obj.saysLast = obj.says;
         }
 
 

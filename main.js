@@ -113,6 +113,7 @@ var jsApp	=
       		if($('#sandbox').is(':visible')) {
       			setTimeout(function(){
       				$('#sandbox').hide();
+      				window.sandbox.model.destroy();
       			},150);
       		}
       		else {
