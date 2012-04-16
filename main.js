@@ -41,17 +41,6 @@ var jsApp	=
 {
 	worldObjects: {},
 
-	jsEval: function(codeString) 
-	{
-		// try/catch so errors are handled in-game
-		try{
-			with(this.worldObjects) {return eval(codeString);}
-		}
-		catch(e) {
-			return 'Oops: ' + e.message;
-		}
-	},
-
 	// Initialize the jsApp
 	onload: function()
 	{

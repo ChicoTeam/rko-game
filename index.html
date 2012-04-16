@@ -3,6 +3,8 @@
 <head>
 	<title>Game</title>
 
+
+
 	<link href="libs/js-sandbox-console/sandbox.css" rel="stylesheet"/><!-- js sandbox console style -->
 </head>
 <body>
@@ -11,6 +13,8 @@
 	<!-- BEGIN: js sandbox console stuff... -->
 	<!-- HTML -->
 	<div id="sandbox">sandbox console loading...</div>
+
+
 
 	<!-- Templates -->	
 	<!-- The sandbox template: -->
@@ -26,17 +30,21 @@
 <span class="prefix"><%= this.resultPrefix %></span><span class="<%= _class %>"><%= result %></span>
 <% } %></script>
 
+
+
+
+	<script src="libs/jquery-1.7.2.js"></script>
+
 	<!-- Scripts -->
 	<!-- Underscore, Backbone, backbone-localStorage, jQuery -->
-	<script src="libs/js-sandbox-console/libs/underscore.min.js"></script>
-	<script src="libs/js-sandbox-console/libs/backbone.min.js"></script>
-	<script src="libs/js-sandbox-console/libs/backbone-localStorage.min.js"></script>
-	<script src="libs/js-sandbox-console/libs/jquery.min.js"></script>
+	<script src="libs/underscore.js"></script>
+	<script src="libs/backbone.js"></script>
+	<script src="libs/backbone.localStorage.js"></script>
 
 	<!-- The JS Sandbox Console script (requires underscore, backbone and jquery): -->
 	<script src="libs/js-sandbox-console/sandbox-console.js"></script>
-	
-	<!-- When ready, create the model and view -->
+
+		<!-- When ready, create the model and view -->
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			// Create the sandbox:
@@ -48,14 +56,13 @@
 				})
 			});
 		});
-	</script>
+	</script>	
+
 	<!-- END: js sandbox console stuff -->
 
 
 	<!-- BEGIN: melon js stuff -->
 	<div id="jsapp">
-		<!-- <script type="text/javascript" src="libs/melonJS-0.9.2.js"></script> include melonJS first -->
-		<script type="text/javascript" src="libs/js-sandbox-console/sandbox-console.js" /></script>
 		<script type="text/javascript" src="libs/melonJS-0.9.3.js"></script><!-- include melonJS first -->
 		<script type="text/javascript" src="resources.js"></script>
 		<script type="text/javascript" src="gameObj.js"></script>

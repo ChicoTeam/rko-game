@@ -34,7 +34,7 @@ var Sandbox = {
 		},
 
 		// The Sandbox Model tries to use the localStorage adapter to save the command history
-		localStorage: new Store("SandboxConsole"),
+		localStorage: new Backbone.LocalStorage("SandboxConsole"),
 		
 		// Parser for restoring the Model's state
 		// Backbone.localStorage adapter stores a collection, so grab the first 'model'
@@ -172,13 +172,13 @@ var Sandbox = {
 			this.model.bind("change", this.update);
 
 			// Delegate key and mouse events to View input
-			this.el.delegate("textarea", {
+			this.$el.delegate("textarea", {
 				keydown : this.keydown,
 				keyup : this.keyup
 			});
 
 			// Delegate click event to View output
-			this.el.delegate(".output", {
+			this.$el.delegate(".output", {
 				click : this.focus
 			});
 
@@ -192,12 +192,12 @@ var Sandbox = {
 
 		// Renders the Sandbox View initially and stores references to the elements
 		render: function() {
-			this.el.html(this.template({
+			this.$el.html(this.template({
 				placeholder : this.placeholder
 			}));
 
-			this.textarea = this.el.find("textarea");
-			this.output = this.el.find(".output");
+			this.textarea = this.$el.find("textarea");
+			this.output = this.$el.find(".output");
 
 			return this;
 		},
@@ -310,6 +310,8 @@ var Sandbox = {
 				// Update the View's history state to reflect the latest history item
 				this.historyState = this.model.get('history').length;
 				
+				this.update();
+
 				return false;
 			}
 	

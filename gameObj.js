@@ -148,19 +148,26 @@ var EnemyEntity = me.ObjectEntity.extend({
         if (!obj.isInConveration) {
             this.step = 0;
             obj.isInConveration = true;
+            obj.saysLast = obj.says;
+
+            $('#sandbox').show();
+            window.sandbox.model.on('sync', function(){
+                obj.says = eval(_.last(window.sandbox.model.get('history')).result);
+            });
+
         }
         this.saysLast = this.says;
 
         // conversation steps
         switch(this.step) {
             case 0:
-                this.says = "Hi! (Hit c and type 'Hi!' to say hi back)";
+                this.says = "Hi! (type 'Hi!' to say hi back)";
                 if (obj.says == 'Hi!')
                     this.step++;
                 break;
             case 1:
-                this.says = "My name is Joe. What is your name?";
-                if (obj.says != 'Hi!' && obj.says.indexOf('Oops') < 0)
+                this.says = "I'm Joe. What is your name?";
+                if (obj.says != 'Hi!')
                     this.step++;
                 break;
             case 2:
@@ -168,18 +175,20 @@ var EnemyEntity = me.ObjectEntity.extend({
                 obj.name = obj.says;
                 this.step++;
                 break;
-            case 3:
-                this.says = "So... what's up?";
-                break;
+            // case 3:
+            //     this.says = "So... what's up?";
+            //     break;
         }
 
         // only say something if it hasn't already been said
         if (this.saysLast !== this.says) {
             console.log(this.says);
-            $('#sandbox').show();
-            window.sandbox.model.evaluate("'" + this.says + "'");
-            // TODO: use window.sandbox.model.get('history')[length-1] to get last player input
+            window.sandbox.placeholder = this.says;
+            window.sandbox.render();
         }
+
+
+        // me.state.pause();
     },
  
     // manage the enemy movement
