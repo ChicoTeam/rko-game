@@ -19,7 +19,7 @@ var PlayerEntity = me.ObjectEntity.extend({
 
         this.gravity = 0;
 	
-       	this.updateColRect(8,48,-1,0);	
+       	this.updateColRect(16,32,44,20);	
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
  

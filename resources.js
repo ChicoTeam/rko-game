@@ -7,6 +7,7 @@
 var g_resources= [	
 	// images
 	{name: "free_tileset_version_10",   type:"image",	src: "data/free_tileset_version_10.png"},
+	{name: "breadinator_tileset", type:"image",	src:"data/breadinator_tileset.png"},
 	// TMX maps
 	{name: "village",   type: "tmx",  src: "data/village.tmx"}, 
 	// main character
