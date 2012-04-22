@@ -112,6 +112,8 @@ var PlayerEntity = me.ObjectEntity.extend({
 
 
 
+
+
 /* --------------------------
 an enemy Entity
 ------------------------ */
@@ -211,10 +213,96 @@ var EnemyEntity = me.ObjectEntity.extend({
          
         // update animation if necessary
         if (this.vel.x!=0 || this.vel.y!=0) {
-            // update objet animation
+            // update object animation
             this.parent(this);
             return true;
         }
         return false;
     }
+});
+
+
+// define object that can draw text on screen
+var HUDtextObject = me.HUD_Item.extend(
+{
+   // constructor
+   init: function(x, y)
+   {
+      // call the parent constructor
+      this.parent(x, y);
+      // create a font
+      this.font = new me.Font("Courier New", 18, "white", "center");
+   },
+   // draw function
+   draw : function (context, x, y)
+   {
+      this.font.draw (context, this.value, this.pos.x +x, this.pos.y +y);
+   }
+});
+
+
+
+var Button = me.ScreenObject.extend({
+    // constructor
+    init: function(x, y) {
+        this.parent(true);
+        this.x = x;
+        this.y = y;
+        // button image
+        this.image = null;
+    },
+    // reset function
+    onResetEvent: function() {
+        
+    },
+    // update function
+    update: function() {
+    },
+ 
+    // draw function
+    draw: function(context) {
+        if (this.image == null) {
+            // init stuff if not yet done
+            this.image = me.loader.getImage("button"); 
+        }
+        context.drawImage(this.image, this.x, this.y);
+    },
+ 
+    // destroy function
+    onDestroyEvent: function() {
+    
+    }
+});
+
+
+
+
+// define custom base object... to be used later?
+var Obj = Object.extend(
+{
+    init: function() {
+        
+    },
+    look: function() {
+        var result = "";
+
+        for(var key in this) {
+            if(typeof this[key] === "function") {
+                if(result.length > 0) {
+                    result += ", ";
+                }
+                result += key + "()";
+            }
+        }
+
+        return result;
+    },
+    // example stuff....
+    // size: 10,
+    // makeBigger: function(size) {
+    //  if(!size)
+    //      return "Usage: makeBigger(size)";
+    //  else
+    //      return this.size + size;
+    // }
 });

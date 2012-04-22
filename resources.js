@@ -21,5 +21,11 @@ var g_resources= [
 	    name: "wheelie_right",
 	    type: "image",
 	    src: "data/sprite/wheelie_right.png"
+	},
+	// open console button
+	{
+		name: "button",
+		type: "image",
+		src: "data/sprite/512-terminal.png"
 	}
 ];

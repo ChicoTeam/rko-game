@@ -10,10 +10,13 @@ TODOs (by priority)
 - get WorldObjects context into console (again)
 - make click/touch work for player movement
 - create/find new character sprites
-- find new tilesheet for map
+- find new tilesheet for map (opengameart.org)
 	- create new map in Tiled
 - add button to open/close console (HUD)
 - make game code match the storyline
+- game sounds / music
+- title screen
+- presentation slideshow?
 
 
 Below are ideas for levels and lessons within those levels.
