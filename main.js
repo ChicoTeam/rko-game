@@ -5,34 +5,6 @@
 	------					*/
 
 
-// define custom base object
-var Obj = Object.extend(
-{
-	init: function() {
-		
-	},
-	look: function() {
-		var result = "";
-
-		for(var key in this) {
-			if(typeof this[key] === "function") {
-				if(result.length > 0) {
-					result += ", ";
-				}
-				result += key + "()";
-			}
-		}
-
-		return result;
-	},
-	size: 10,
-	makeBigger: function(size) {
-		if(!size)
-			return "Usage: makeBigger(size)";
-		else
-			return this.size + size;
-	}
-});
 
 
 
@@ -47,7 +19,7 @@ var jsApp	=
 		// put melonjs into worldObjects for hacking fun
 		this.worldObjects.me = me;
 
-		this.worldObjects.o = new Obj();
+		this.worldObjects.o = new Obj();// for testing purposes only
 
 		if (!me.video.init('jsapp', 400, 280))
 		{
@@ -79,6 +51,13 @@ var jsApp	=
    		me.entityPool.add("mainplayer", PlayerEntity);
    		me.entityPool.add("enemyentity", EnemyEntity);
 
+		// add a default HUD to the game mngr (with no background)
+		me.game.addHUD(0, 250, 400, 30, "transparent");
+
+		// add the HUD text item
+		me.game.HUD.addItem("hud_button", new Button(3,0));
+		//me.game.HUD.setItemValue("hud_button", "Open Console");
+
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
@@ -86,7 +65,8 @@ var jsApp	=
 		me.input.bindKey(me.input.KEY.DOWN,	 "down");
 		me.input.bindKey(me.input.KEY.C,	 "console");
 
-        //enable mouse events NEW
+        //enable mouse events
+        //me.input.enableMouseEvent();
 
 		// start the game
 		me.state.change(me.state.PLAY);
