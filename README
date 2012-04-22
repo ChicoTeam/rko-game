@@ -4,6 +4,18 @@ The idea is to have an RPG game that teaches you how to program.
 
 It is not currently working. 
 
+-----------------------------------
+
+TODOs (by priority)
+- get WorldObjects context into console (again)
+- make click/touch work for player movement
+- create/find new character sprites
+- find new tilesheet for map
+	- create new map in Tiled
+- add button to open/close console (HUD)
+- make game code match the storyline
+
+
 Below are ideas for levels and lessons within those levels.
 
 Levels:
