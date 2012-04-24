@@ -7,14 +7,14 @@ It is not currently working.
 -----------------------------------
 
 TODOs (by priority)
-- get WorldObjects context into console (again)
 - make click/touch work for player movement
 - create/find new character sprites
 - find new tilesheet for map (opengameart.org)
 	- create new map in Tiled
-- add button to open/close console (HUD)
 - make game code match the storyline
+- integrate social media?
 - game sounds / music
+- name the game something clever, but not annoying
 - title screen
 - presentation slideshow?
 
