@@ -242,33 +242,56 @@ var HUDtextObject = me.HUD_Item.extend(
 
 
 
-var Button = me.ScreenObject.extend({
+var ConsoleButton = me.ScreenObject.extend({
+    showConsole: function() {
+        if($('#sandbox').is(':visible')) {
+            setTimeout(function(){
+                $('#sandbox').hide();
+                window.sandbox.model.destroy();
+            },150);
+        }
+        else {
+            setTimeout(function(){
+                $('#sandbox').show();
+            },150);                 
+        }
+    },
     // constructor
-    init: function(x, y) {
+    init: function(x, y, x_offset, y_offset) {
         this.parent(true);
         this.x = x;
         this.y = y;
-        // button image
+        this.width = 30;
+        this.height = 30;
+
+        // init button image
         this.image = null;
+
+        // represents the clickable area (the button image)
+        this.rect = new me.Rect(
+            new me.Vector2d(this.x + x_offset, this.y + y_offset), 
+            this.width, this.height
+            );
+
+        // set up mouse click binding
+        me.input.registerMouseEvent('mousedown', this.rect, this.showConsole);
     },
-    // reset function
+
     onResetEvent: function() {
         
     },
-    // update function
+ 
     update: function() {
     },
  
-    // draw function
     draw: function(context) {
         if (this.image == null) {
             // init stuff if not yet done
-            this.image = me.loader.getImage("button"); 
+            this.image = me.loader.getImage("console_button"); 
         }
         context.drawImage(this.image, this.x, this.y);
     },
  
-    // destroy function
     onDestroyEvent: function() {
     
     }
@@ -278,8 +301,7 @@ var Button = me.ScreenObject.extend({
 
 
 // define custom base object... to be used later?
-var Obj = Object.extend(
-{
+var Obj = Object.extend({
     init: function() {
         
     },

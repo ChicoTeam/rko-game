@@ -22,9 +22,9 @@ var g_resources= [
 	    type: "image",
 	    src: "data/sprite/wheelie_right.png"
 	},
-	// open console button
+	// open/close console button
 	{
-		name: "button",
+		name: "console_button",
 		type: "image",
 		src: "data/sprite/512-terminal.png"
 	}

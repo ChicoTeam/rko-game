@@ -11,15 +11,12 @@
 // define melonJS app
 var jsApp	=
 {
-	worldObjects: {},
-
 	// Initialize the jsApp
 	onload: function()
 	{
-		// put melonjs into worldObjects for hacking fun
-		this.worldObjects.me = me;
-
-		this.worldObjects.o = new Obj();// for testing purposes only
+		// put melonjs into console sandbox for hacking fun
+		window.sandbox.model.sandbox.me = me;
+		window.sandbox.model.sandbox.o = new Obj();// for testing purposes only
 
 		if (!me.video.init('jsapp', 400, 280))
 		{
@@ -55,7 +52,7 @@ var jsApp	=
 		me.game.addHUD(0, 250, 400, 30, "transparent");
 
 		// add the HUD text item
-		me.game.HUD.addItem("hud_button", new Button(3,0));
+		me.game.HUD.addItem("hud_button", new ConsoleButton(3, 0, 0, 250));
 		//me.game.HUD.setItemValue("hud_button", "Open Console");
 
 		// enable the keyboard (to navigate in the map)
@@ -63,10 +60,9 @@ var jsApp	=
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.UP,	 "up");
 		me.input.bindKey(me.input.KEY.DOWN,	 "down");
-		me.input.bindKey(me.input.KEY.C,	 "console");
+		me.input.bindKey(me.input.KEY.ESC,	 "console");
 
         //enable mouse events
-        //me.input.enableMouseEvent();
 
 		// start the game
 		me.state.change(me.state.PLAY);
@@ -87,21 +83,6 @@ var jsApp	=
 	onUpdateFrame: function()
 	{
 		var speed = 3;
-
-		if (me.input.isKeyPressed('console'))
-      {
-      		if($('#sandbox').is(':visible')) {
-      			setTimeout(function(){
-      				$('#sandbox').hide();
-      				window.sandbox.model.destroy();
-      			},150);
-      		}
-      		else {
-      			setTimeout(function(){
-      				$('#sandbox').show();
-      			},150);     			
-      		}
-		}
 	
 		// update our sprites
 		me.game.update();
@@ -111,9 +92,6 @@ var jsApp	=
 	}
 
 }; // jsApp
-
-
-
 
 
 
