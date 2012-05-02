@@ -9,7 +9,6 @@ It is not currently working that well.
 TODOs (by priority)
 - make click/touch work for player movement
 - make buttons for hard-to-find keys on mobile
-- force lowercase (to ease JS pains)
 - make screen resize or offer aspect ratio buttons
 - create/find new character sprites
 - find new tilesheet for map (opengameart.org)

@@ -51,6 +51,12 @@
 				}),
 				placeholder : "Use Javascript to interact or type :help"
 			});
+
+			// fix input to lower case
+			$('#sandbox textarea').keyup(function(){
+				var $this = $(this);
+				$this.val($this.val().toLowerCase());
+			});
 		});
 	</script>	
 
