@@ -2,12 +2,15 @@ This is a project that Russ, Kyle, and Oriah are working on for the upcoming mob
 
 The idea is to have an RPG game that teaches you how to program. 
 
-It is not currently working. 
+It is not currently working that well. 
 
 -----------------------------------
 
 TODOs (by priority)
 - make click/touch work for player movement
+- make buttons for hard-to-find keys on mobile
+- force lowercase (to ease JS pains)
+- make screen resize or offer aspect ratio buttons
 - create/find new character sprites
 - find new tilesheet for map (opengameart.org)
 	- create new map in Tiled
