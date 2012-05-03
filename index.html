@@ -13,6 +13,11 @@
 			color:white;
 		}
 	</style>
+	<script type="text/javascript">
+		window.onerror = function(e) {
+		    alert("error: " + e);
+		};
+	</script>
 </head>
 <body>
 
@@ -50,10 +55,6 @@
 
 	<!-- When ready, create the model and view -->
 	<script type="text/javascript">
-		window.onerror = function(e) {
-		    alert("error: " + e);
-		};
-
 		jQuery(document).ready(function($) {
 			// Create the sandbox:
 			window.sandbox = new Sandbox.View({
