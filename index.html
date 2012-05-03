@@ -10,6 +10,7 @@
 			margin:0px; 
 			padding:0px;
 			background-color: black;
+			color:white;
 		}
 	</style>
 </head>
@@ -49,6 +50,10 @@
 
 	<!-- When ready, create the model and view -->
 	<script type="text/javascript">
+		window.onerror = function(e) {
+		    document.write("error: " + e);
+		};
+
 		jQuery(document).ready(function($) {
 			// Create the sandbox:
 			window.sandbox = new Sandbox.View({
