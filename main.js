@@ -18,7 +18,7 @@ var jsApp	=
 		window.sandbox.model.sandbox.me = me;
 		window.sandbox.model.sandbox.o = new Obj();// for testing purposes only
 
-		if (!me.video.init('jsapp', 400, 280))
+		if (!me.video.init('jsapp', 800, 280))
 		{
 			alert("Sorry but your browser does not support html 5 canvas. Please try with another one!");
 			return;

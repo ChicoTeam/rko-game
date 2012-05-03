@@ -4,10 +4,24 @@
 	<title>Game</title>
 
 	<link href="libs/js-sandbox-console/sandbox.css" rel="stylesheet"/><!-- js sandbox console style -->
+
+	<style type="text/css">
+		html, body {
+			margin:0px; 
+			padding:0px;
+			background-color: black;
+			color:white;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onerror = function(e) {
+		    alert("error: " + e);
+		};
+	</script>
 </head>
 <body>
 
-	<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
 
 	<!-- BEGIN: js sandbox console stuff... -->
 	<!-- HTML -->
@@ -72,6 +86,6 @@
 	</div>
 	<!-- END: melon js stuff -->
 
-	<a href="javascript:Firebug.chrome.open();">Open Firebug Lite</a>
+	<!--<a href="javascript:Firebug.chrome.open();" style="color:white;">Open Firebug Lite</a>-->
 </body>
 </html>
