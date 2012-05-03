@@ -40,6 +40,7 @@ var jsApp	=
 	//	callback when everything is loaded								
 	loaded: function ()
 	{
+		alert('loaded');
 
 		// set the "Play/Ingame" Screen Object
 		me.state.set(me.state.PLAY, this);
@@ -72,6 +73,7 @@ var jsApp	=
 
 	reset: function()
 	{	
+		alert('reset');
 		me.game.reset();
 
 		// load a level
@@ -82,11 +84,12 @@ var jsApp	=
 	// rendering loop								
 	onUpdateFrame: function()
 	{
+		alert('onUpdateFrame');
 		var speed = 3;
 	
 		// update our sprites
 		me.game.update();
-	
+
 		// draw the rest of the game
 		me.game.draw();
 	}
