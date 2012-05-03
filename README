@@ -8,6 +8,7 @@ It is not currently working that well.
 
 TODOs (by priority)
 - make click/touch work for player movement
+- move console textarea to top of screen so mobile keyboard doesn't scroll page
 - make buttons for hard-to-find keys on mobile (quotes, equals)
 - make screen resize or offer aspect ratio buttons
 - create/find new character sprites
