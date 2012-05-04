@@ -20,6 +20,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.gravity = 0;
 	
        	this.updateColRect(16,32,44,20);	
+
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
  
@@ -27,8 +28,20 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.isInConveration = false;
 
         this.says = "";
+
+        //-------------waypoint stuff
+        this.waypoint = { x: this.pos.x, y: this.pos.y };
+        this.calculateCenter();
+        //-------------end waypoint stuff
     },
- 
+
+    /**
+    helper function to calculate the center of the player sprite
+    */
+    calculateCenter: function() {
+        this.center = { x: (this.pos.x * 2 + this.width)/2,
+                        y: (this.pos.y * 2 + this.height)/2 };
+    },
 
     /**
      * helper function for platform games
@@ -63,6 +76,86 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
     },
 
+    /**
+     * helper function for platform games
+     * make the entity move left or right
+     * @param {Boolean} left will automatically flip horizontally the entity sprite
+     */
+    doWalk2: function(direction) {
+
+        switch(direction) {
+            case 'up':
+                this.vel.y = -this.accel.y * me.timer.tick;
+                break;
+            case 'down':
+                this.vel.y = this.accel.y * me.timer.tick;
+                break;
+            case 'left':
+                this.vel.x = -this.accel.x * me.timer.tick;
+                this.flipX(true);
+                break;
+            case 'right':
+                this.vel.x = this.accel.x * me.timer.tick;
+                this.flipX(false);
+                break;
+            case 'stopx':
+                this.vel.x = 0;
+                break;
+            case 'stopy':
+                this.vel.y = 0;
+                break;
+            default:
+                this.vel.y = 0;
+                this.vel.x = 0;
+                break;
+        }
+    },
+
+    /* -----
+    updates the waypoint associated with the player
+    ----- */
+    updateWaypoint: function(pos) {
+        if (pos.x == -1 && pos.y == -1)
+        {
+            this.waypoint = this.center;
+            //console.log('stop');
+        }
+        else
+        {
+            this.waypoint = pos;
+            //console.log('start');
+        }
+    },
+
+    /* -----
+    updates the waypoint to a position so the player will stop moving,
+        this is called when the mouse up event is fired from main.js
+    ----- */
+    /*
+    updateWaypoint: function() {
+        //might need to recalc center
+        this.waypoint.x = this.center.x;
+        this.waypoint.y = this.center.y;
+        console.log('noargs');
+    },
+    */
+
+    /* -----
+    Helper function that checks if the point (waypoint) passed is contained by the players sprite
+    Returns: true if the point is bounded by the player's sprite, otherwise false
+    ----- */
+    isBounded: function(point) {
+        this.calculateCenter();
+
+        if (this.pos.x < point.x && point.x < (this.pos.x + this.width) &&
+            this.pos.y < point.y && point.y < (this.pos.y + this.height) )
+        {
+            return true;
+        }
+
+        return false;
+    },
+
     /* -----
  
     update the player pos
@@ -70,6 +163,7 @@ var PlayerEntity = me.ObjectEntity.extend({
     ------ */
     update: function() {
  
+        /*
         if (me.input.isKeyPressed('left')) {
             this.doWalk('left');
         } else if (me.input.isKeyPressed('right')) {
@@ -81,6 +175,29 @@ var PlayerEntity = me.ObjectEntity.extend({
         } else {
             this.vel.y = 0;
             this.vel.x = 0;
+        }
+        */
+
+        if (!this.isBounded(this.waypoint))
+        {
+            if (this.center.x < this.waypoint.x)
+                this.doWalk2('right');
+            else if (this.center.x > this.waypoint.x)
+                this.doWalk2('left');
+            else
+                this.doWalk2('stopx');
+
+            if (this.center.y < this.waypoint.y)
+                this.doWalk2('down');
+            else if (this.center.y > this.waypoint.y)
+                this.doWalk2('up');
+            else
+                this.doWalk2('stopy');
+        }
+        else
+        {
+            //waypoint is bounded, so need to stop movement
+            this.doWalk2('');
         }
 
         // check & update player movement

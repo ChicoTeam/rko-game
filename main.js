@@ -63,6 +63,8 @@ var jsApp	=
 		me.input.bindKey(me.input.KEY.ESC,	 "console");
 
         //enable mouse events
+        me.input.registerMouseEvent('mousedown', me.viewport, this.clicked.bind(this));
+        me.input.registerMouseEvent('mouseup', me.viewport, this.clicked.bind(this));
 
 		// start the game
 		me.state.change(me.state.PLAY);
@@ -78,6 +80,21 @@ var jsApp	=
 		me.levelDirector.loadLevel("village");	
 	},
 
+    /* ------
+    this catches the mouse down event and updates the player's waypoint
+    ------ */
+    clicked: function(e) {
+        if (e.type == "mousedown")
+        {
+            me.game.getEntityByName("mainplayer")[0].updateWaypoint(me.input.mouse.pos);
+            //console.log('down');
+        }
+        else if (e.type == "mouseup")
+        {
+            me.game.getEntityByName("mainplayer")[0].updateWaypoint( {x: -1, y: -1} );
+            //console.log('up');
+        }
+    },
 
 	// rendering loop								
 	onUpdateFrame: function()
