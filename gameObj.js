@@ -5,7 +5,7 @@ game object
 ------   */
 
 /*-------------------
-a player entity
+a / entity
 -------------------------------- */
 var PlayerEntity = me.ObjectEntity.extend({
  
