@@ -17,30 +17,36 @@ var jsApp	=
 		// put melonjs into console sandbox for hacking fun
 		window.sandbox.model.sandbox.me = me;
 
-		var width = window.innerWidth,
-			height = window.innerWidth*1.33,
-			mapWidth = 25*32,
+		// var width = window.innerWidth,
+		// 	height = window.innerWidth*1.33,
+		var	mapWidth = 25*32,
 			mapHeight = 45*32;
 
-		if (window.innerHeight < height || height > mapHeight) {
-			width = window.innerHeight*.75;
-			height = window.innerHeight;
+		// if (window.innerHeight < height || height > mapHeight) {
+		// 	width = window.innerHeight*.75;
+		// 	height = window.innerHeight;
+		// }
+
+		// if (window.innerWidth < width || width > mapWidth) {
+		// 	width = mapWidth;
+		// 	height = mapWidth*1.33;
+		// }
+
+
+		this.width = window.innerWidth,
+		this.height = window.innerHeight;
+
+		if (this.height > mapHeight) {
+			this.height = mapHeight;
+		}
+		if (this.width > mapWidth) {
+			this.width = mapWidth;
 		}
 
-		if (window.innerWidth < width || width > mapWidth) {
-			width = mapWidth;
-			height = mapWidth*1.33;
-		}
+		$('#sandbox').css('width',this.width);
+		$('#sandbox').css('height',this.height-50);
 
-		if (height > mapHeight) {
-			width = mapHeight*.75;
-			height = mapHeight;
-		}
-
-		$('#sandbox').css('width',width);
-		$('#sandbox').css('height',height-30);
-
-		if (!me.video.init('jsapp', width, height))
+		if (!me.video.init('jsapp', this.width, this.height))
 		{
 			alert("Sorry but your browser does not support html 5 canvas. Please try with another one!");
 			return;
@@ -71,7 +77,7 @@ var jsApp	=
    		me.entityPool.add("enemyentity", EnemyEntity);
 
 		// add a default HUD to the game mngr (with no background)
-		me.game.addHUD(0, 0, 400, 30, "transparent");
+		me.game.addHUD(0, 0, this.width, 50, "transparent");
 
 		// add the HUD text item
 		me.game.HUD.addItem("hud_button", new ConsoleButton(3, 0, 0, 0));

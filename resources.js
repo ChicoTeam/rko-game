@@ -26,6 +26,6 @@ var g_resources= [
 	{
 		name: "console_button",
 		type: "image",
-		src: "data/sprite/512-terminal.png"
+		src: "data/sprite/utilities-terminal.png"
 	}
 ];
