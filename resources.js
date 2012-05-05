@@ -21,11 +21,11 @@ var g_resources= [
 	    name: "wheelie_right",
 	    type: "image",
 	    src: "data/sprite/wheelie_right.png"
-	},
+	}//,
 	// open/close console button
-	{
-		name: "console_button",
-		type: "image",
-		src: "data/sprite/512-terminal.png"
-	}
+	// {
+	// 	name: "console_button",
+	// 	type: "image",
+	// 	src: "data/sprite/utilities-terminal.png"
+	// }
 ];
