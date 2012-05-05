@@ -1,3 +1,6 @@
+//basic movement tutorial
+// source of the information comes from a voice from an unseen entity
+// the voice has multiple timbres from different people. At least thats what it sounds like
 m0_intro_convo = 
 	[ {
 			initial_prompt			: "Hello, and welcome to Hackman JS. You can move around by touching anywhere on the screen. (try this now)",
@@ -11,6 +14,7 @@ m0_intro_convo =
 	  }
 	];
 
+// interacting with the NPCs
 m1_q1_convo = 
 	[ {
 			initial_prompt			: "Hi there! I need to talk to you. (Walk toward 'the guardian')",
@@ -20,10 +24,16 @@ m1_q1_convo =
 		{
 			initial_prompt			: "Hi... You do say 'hi' don't you? (Say /"hi/")",
 	    expectected_response:	"hi",
-	    incorrectReply			: "Well i don't believe that is a hi but that is close enough"
+	    incorrectReply			: "Well i don't believe that is 'hi', try again"
+	  }
+	  {
+			initial_prompt			: "HAHA!, i don't beleive it, you speak. Can you say "hello world" for me?",
+	    expectected_response:	"hello world",
+	    incorrectReply			: "Well, i can't ask for everything. Try again."
 	  }
 	];	
 
+//basic arithmetic, input into console.
 m1_q2_convo = 
 	[  {
 			initial_prompt			: "Now in order to test your future capabilities, i'm going to ask you to perform some basic arithmetic",
@@ -68,3 +78,25 @@ m1_q2_convo =
 	   }
 	];	
 
+// conditionals
+m1_q3_convo = 
+	[
+		{
+			initial_prompt			: "You have learned how to do basic arithmetic that will help you in your later endevours",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now im going to teach you conditional statements. Conditional statements are constructs or ideas that evaluate into \"true\" or \"false\". This will help you in  situations where you want to execute code only when a condition is true, else you will execute other code instead. An example of this is: ",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now try this. I want you to execute a line of code that i will give you. don't worry if you dont know what it means yet (you will in later quests)",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+
+	];
+
+// variables
