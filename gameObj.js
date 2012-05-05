@@ -280,14 +280,31 @@ var EnemyEntity = me.ObjectEntity.extend({
         }
         this.saysLast = this.says;
 
+        this.says = this.conversations[this.step].initial;
+        if (obj.says.match(this.conversations[this.step].expected) != null)
+        if (obj.says.match(this.conversations[this.step].expected) != 'Hi!' && obj.says != obj.saysLast && typeof(obj.says) == "string" && obj.says.indexOf('Error') < 0)
+            this.step++;
+        else
+
+        break;
+    
+        /*
         // conversation steps
         switch(this.step) {
             case 0:
+                this.says = this.conversations[0].initial;
+                if (obj.says.match(this.conversations[0].expected) != null)
+                    this.step++;
+                break;
                 this.says = "Hi! (type \"Hi!\" to say hi back)";
                 if (obj.says == 'Hi!')
                     this.step++;
                 break;
             case 1:
+                this.says = this.conversations[0].initial;
+                if (obj.says.match(this.conversations[0].expected) != null)
+                    this.step++;
+                break;
                 this.says = "I\'m Joe. What is your name?";
                 if (obj.says != 'Hi!' && obj.says != obj.saysLast && typeof(obj.says) == "string" && obj.says.indexOf('Error') < 0)
                     this.step++;
@@ -301,6 +318,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             //     this.says = "So... what's up?";
             //     break;
         }
+        */
 
         // only say something if it hasn't already been said
         if (this.saysLast !== this.says) {
@@ -314,9 +332,6 @@ var EnemyEntity = me.ObjectEntity.extend({
             window.sandbox.update();
             obj.saysLast = obj.says;
         }
-
-
-        // me.state.pause();
     },
  
     // manage the enemy movement
@@ -335,6 +350,11 @@ var EnemyEntity = me.ObjectEntity.extend({
             return true;
         }
         return false;
+    },
+
+    //updates the convos
+    setConversations: function(convos) {
+       this.conversations = convos;
     }
 });
 

@@ -4,10 +4,6 @@
 	
 	------					*/
 
-
-
-
-
 // define melonJS app
 var jsApp	=
 {
@@ -48,6 +44,7 @@ var jsApp	=
    		me.entityPool.add("mainplayer", PlayerEntity);
    		me.entityPool.add("enemyentity", EnemyEntity);
 
+
 		// add a default HUD to the game mngr (with no background)
 		me.game.addHUD(0, 250, 400, 30, "transparent");
 
@@ -78,6 +75,60 @@ var jsApp	=
 
 		// load a level
 		me.levelDirector.loadLevel("village");	
+
+        //try loading convos
+        me.game.getEntityByName("enemyentity")[0].setConversations(
+                [{
+                    initial: "Hi! (type \"Hi!\" to say hi back)",
+                    expected: /hi/i,
+                    incorrect: "...Is that how you greet people?"
+                },
+                {
+                    initial: "I\'m Joe. What is your name?",
+                    expected: /.+/i,
+                    incorrect: "I couldn\'t hear what you said, can you say that again?"
+                },
+                {
+                    initial: "what you typed are called strings. These will be of much help in your quest! Good luck!",
+                    expected: /.*/i,
+                    incorrect: null
+                }]
+            );
+        me.game.getEntityByName("enemyentity")[1].setConversations(
+                [{
+                    initial: "Math is easy, type in any math expression and javascript will evaluate it for you (ex: 3 + 2)",
+                    expected: /[0-9.-e]+/i,
+                    incorrect: ""
+                },
+                {
+                    initial: "variables are very useful, you\'ll use them everyday, try somehting like a = 5 or b = \'cello!\'",
+                    expected: /.+/i,
+                    incorrect: "that didn\'t look right...try that again!"
+                },
+                {
+                    initial: "blah",
+                    expected: /.*/i,
+                    incorrect: null
+                }]
+            );
+
+        //me.game.getEntityByName("enemyentity")[2].setConversations(
+                //[{
+                    //initial: "blah blah?",
+                    //expected: /.*/i,
+                    //incorrect: "BLAH BLAH!"
+                //},
+                //{
+                    //initial: "blah blah?",
+                    //expected: /.*/i,
+                    //incorrect: "BLAH BLAH!"
+                //},
+                //{
+                    //initial: "good luck",
+                    //expected: /.*/i,
+                    //incorrect: null
+                //}]
+            //);
 	},
 
     /* ------
