@@ -1,0 +1,102 @@
+//basic movement tutorial
+// source of the information comes from a voice from an unseen entity
+// the voice has multiple timbres from different people. At least thats what it sounds like
+m0_intro_convo = 
+	[ {
+			initial_prompt			: "Hello, and welcome to Hackman JS. You can move around by touching anywhere on the screen. (try this now)",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+		{
+			initial_prompt			: "Good, now if you want to get started with the series of tutorials, move to 'the guardian'",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  }
+	];
+
+// interacting with the NPCs
+m1_q1_convo = 
+	[ {
+			initial_prompt			: "Hi there! I need to talk to you. (Walk toward 'the guardian')",
+	    expectected_response:	"",
+	    incorrectReply			: "You need to walk over to me for further instructions"
+	  },
+		{
+			initial_prompt			: "Hi... You do say 'hi' don't you? (Say /"hi/")",
+	    expectected_response:	"hi",
+	    incorrectReply			: "Well i don't believe that is 'hi', try again"
+	  }
+	  {
+			initial_prompt			: "HAHA!, i don't beleive it, you speak. Can you say "hello world" for me?",
+	    expectected_response:	"hello world",
+	    incorrectReply			: "Well, i can't ask for everything. Try again."
+	  }
+	];	
+
+//basic arithmetic, input into console.
+m1_q2_convo = 
+	[  {
+			initial_prompt			: "Now in order to test your future capabilities, i'm going to ask you to perform some basic arithmetic",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	   },
+	   {
+			initial_prompt			: "What is 1 + 1",
+	    expectected_response:	"2",
+	    incorrectReply			: "Wow, thats wrong. I think you may not be 'the one'. Would you like to try again?"
+	   },
+	   {
+			initial_prompt			: "Good!, now what are 2 numbers that add up to 10",
+	    expectected_response:	"if sum(x,y) == 10",																//wait for 2 inputs, add the numbers and check the sum
+	    incorrectReply			: "That's very wrong. Would you like to try again?"
+	   }, 
+	   {
+			initial_prompt			: 
+													"Great! Now i'm going to ask you to multiply and divide numbers, but DO NOT calculate them somewhere else. Calculate them using the textbox, it's easy",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	   },
+	   {
+			initial_prompt			: "Great. Now multiply three numbers together. (a * b * c)",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	   },
+	   {
+			initial_prompt			: "Ok. So using the textbox, multiply these three numbers: 5,10,23",
+	    expectected_response:	"1150",
+	    incorrectReply			: "Nope, that's incorrect. You must have not entered the numbers correctly"
+	   },
+	   {
+			initial_prompt			: "Great. You know how to multiply, now do you know how to divide?",
+	    expectected_response:	"yes",
+	    incorrectReply			: "Well, i will tell you through an example. The number 5 divides into 10 two times. In other words, 10 is divided by 5 (10/5 = 2)"
+	   }
+	   {
+			initial_prompt			: "Ok, so divide 6234 by 6",
+	    expectected_response:	"1039",
+	    incorrectReply			: "Nope, try again:"
+	   }
+	];	
+
+// conditionals
+m1_q3_convo = 
+	[
+		{
+			initial_prompt			: "You have learned how to do basic arithmetic that will help you in your later endevours",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now im going to teach you conditional statements. Conditional statements are constructs or ideas that evaluate into \"true\" or \"false\". This will help you in  situations where you want to execute code only when a condition is true, else you will execute other code instead. An example of this is: ",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now try this. I want you to execute a line of code that i will give you. don't worry if you dont know what it means yet (you will in later quests)",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+
+	];
+
+// variables
