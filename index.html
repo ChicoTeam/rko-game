@@ -12,6 +12,11 @@
 			background-color: black;
 			color:white;
 		}
+		#consoleButton {
+			position: absolute;
+			top:0px;
+			z-index:1000;
+		}
 	</style>
 </head>
 <body>
@@ -73,14 +78,20 @@
 	<!-- END: js sandbox console stuff -->
 
 
+	
+
 	<!-- BEGIN: melon js stuff -->
 	<div id="jsapp">
+		<!-- console button -->
+		<img id="consoleButton" src="data/sprite/utilities-terminal.png" />
 		<script type="text/javascript" src="libs/melonJS-0.9.3.js"></script><!-- include melonJS first -->
 		<script type="text/javascript" src="resources.js"></script>
 		<script type="text/javascript" src="gameObj.js"></script>
 		<script type="text/javascript" src="main.js"></script><!-- include main.js last -->
 	</div>
 	<!-- END: melon js stuff -->
+
+
 
 	<!--<a href="javascript:Firebug.chrome.open();" style="color:white;">Open Firebug Lite</a>-->
 </body>

@@ -44,7 +44,10 @@ var jsApp	=
 		}
 
 		$('#sandbox').css('width',this.width);
-		$('#sandbox').css('height',this.height-50);
+		$('#sandbox').css('height',this.height);
+		$('#consoleButton').css('margin-left',this.width-50);
+		$('#sandbox .output').css('width',this.width-50);
+		$('#sandbox .input').css('width',this.width-70);
 
 		if (!me.video.init('jsapp', this.width, this.height))
 		{
@@ -76,12 +79,12 @@ var jsApp	=
    		me.entityPool.add("mainplayer", PlayerEntity);
    		me.entityPool.add("enemyentity", EnemyEntity);
 
-		// add a default HUD to the game mngr (with no background)
-		me.game.addHUD(0, 0, this.width, 50, "transparent");
+		// // add a default HUD to the game mngr (with no background)
+		// me.game.addHUD(0, 0, this.width, 50, "transparent");
 
-		// add the HUD text item
-		me.game.HUD.addItem("hud_button", new ConsoleButton(3, 0, 0, 0));
-		//me.game.HUD.setItemValue("hud_button", "Open Console");
+		// // add the HUD text item
+		// me.game.HUD.addItem("hud_button", new ConsoleButton(3, 0, 0, 0));
+
 
 		// enable the keyboard (to navigate in the map)
 		me.input.bindKey(me.input.KEY.LEFT,	 "left");
@@ -144,4 +147,20 @@ var jsApp	=
 window.onReady(function() 
 {
 	jsApp.onload();
+});
+
+jQuery(document).ready(function(){
+	$('#consoleButton').click(function(){
+		if($('#sandbox').is(':visible')) {
+	        setTimeout(function(){
+	            $('#sandbox').hide();
+	            window.sandbox.model.destroy();
+	        },150);
+	    }
+	    else {
+	        setTimeout(function(){
+	            $('#sandbox').show();
+	        },150);                 
+	    }
+	});
 });
