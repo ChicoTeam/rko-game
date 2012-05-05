@@ -118,13 +118,16 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (pos.x == -1 && pos.y == -1)
         {
             this.waypoint = this.center;
+	    //me.game.viewport.move(this.center.x-me.game.viewport.getWidth()/2,this.center.y-me.game.viewport.getHeight()/2);		
             //console.log('stop');
         }
         else
         {
             this.waypoint = pos;
+	    //me.game.viewport.move(pos.x-me.game.viewport.getWidth()/2,pos.y-me.game.viewport.getHeight()/2);
             //console.log('start');
         }
+	
     },
 
     /* -----
@@ -207,9 +210,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         var res = me.game.collide(this);
         if (res) {
             // if we collide with an enemy
-            // if (res.obj.type == me.game.ENEMY_OBJECT) {
-            //     console.log("collision");
-            // }
+             if (res.obj.type == me.game.ENEMY_OBJECT) 
+	     {
+		     this.pos.sub(res);
+	     }
+
+            
         }
         else if (this.isInConveration) {
             this.isInConveration = false;
