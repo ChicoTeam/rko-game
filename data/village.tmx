@@ -5,7 +5,7 @@
   <property name="Year" value="2009"/>
  </properties>
  <tileset firstgid="1" name="Untitled" tilewidth="32" tileheight="32">
-  <image source="../../var/www/rko-game/data/free_tileset_version_10.png" width="480" height="1216"/>
+	 <image source="./free_tileset_version_10.png" width="480" height="1216"/>
   <tile id="460">
    <properties>
     <property name="type" value="solid"/>
@@ -43,7 +43,7 @@
   </tile>
  </tileset>
  <tileset firstgid="571" name="futuristic" tilewidth="32" tileheight="32">
-  <image source="../../var/www/rko-game/data/breadinator_tileset.png" trans="508996" width="608" height="544"/>
+  <image source="./breadinator_tileset.png" trans="508996" width="608" height="544"/>
  </tileset>
  <layer name="grass" width="25" height="45" visible="0">
   <data encoding="base64">
