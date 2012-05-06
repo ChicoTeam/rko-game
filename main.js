@@ -63,6 +63,7 @@ var jsApp	=
         me.input.registerMouseEvent('mousedown', me.viewport, this.clicked.bind(this));
         me.input.registerMouseEvent('mouseup', me.viewport, this.clicked.bind(this));
 
+
 		// start the game
 		me.state.change(me.state.PLAY);
 		
@@ -76,39 +77,45 @@ var jsApp	=
 		// load a level
 		me.levelDirector.loadLevel("village");	
 
+
         //try loading convos
         me.game.getEntityByName("enemyentity")[0].setConversations(
                 [{
-                    initial: "Hi! (type \"Hi!\" to say hi back)",
-                    expected: /hi/i,
+                    initial: "Hello, and welcome to Hackman JS. You can move around by touching anywhere on the screen. (try this now)",
+                    expected: /.+/i,
                     incorrect: "...Is that how you greet people?"
                 },
                 {
-                    initial: "I\'m Joe. What is your name?",
+                    initial: "Good, now if you want to get started with the series of tutorials, move to the guardian",
                     expected: /.+/i,
-                    incorrect: "I couldn\'t hear what you said, can you say that again?"
-                },
-                {
-                    initial: "what you typed are called strings. These will be of much help in your quest! Good luck!",
-                    expected: /.*/i,
                     incorrect: null
                 }]
             );
         me.game.getEntityByName("enemyentity")[1].setConversations(
                 [{
-                    initial: "Math is easy, type in any math expression and javascript will evaluate it for you (ex: 3 + 2)",
-                    expected: /[0-9.-e]+/i,
+                    initial: "Hi... You do say hi dont you? (Say hi)",
+                    expected: /hi/i,
+                    incorrect: "Well i dont believe that is a hi but that is close enough"
+                },
+                {
+                    initial: "Now in order to test your future capabilities, im going to ask you to perform some basic arithmetic. What is 1 + 1?",
+                    expected: /2/i,
+                    incorrect: "Wow, thats wrong. I think you may not be the one. Try that again..."
+                },
+                {
+                    initial: "Good!, now what are 2 numbers that add up to 10",
+                    expected: /10/i,
+                    incorrect: "Thats very wrong. Have another go at it..."
+                },
+                {
+                    initial: "Great! Now im going to ask you to multiply or divide numbers, but DO NOT calculate them somewhere else. Calculate them using the textbox, its easy",
+                    expected: /[0-9.-]+/i,
                     incorrect: ""
                 },
                 {
-                    initial: "variables are very useful, you\'ll use them everyday, try somehting like a = 5 or b = \'cello!\'",
-                    expected: /.+/i,
-                    incorrect: "that didn\'t look right...try that again!"
-                },
-                {
-                    initial: "blah",
-                    expected: /.*/i,
-                    incorrect: null
+                    initial: "Im guessing you know how to divide. Try to divide 6324 by 6",
+                    expected: /1054/i,
+                    incorrect: "Nope, try again:"
                 }]
             );
 
@@ -138,7 +145,7 @@ var jsApp	=
         if (e.type == "mousedown")
         {
             me.game.getEntityByName("mainplayer")[0].updateWaypoint(me.input.mouse.pos);
-            //console.log('down');
+            //console.log(me.input.mouse.pos);
         }
         else if (e.type == "mouseup")
         {
