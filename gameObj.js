@@ -39,8 +39,8 @@ var PlayerEntity = me.ObjectEntity.extend({
     helper function to calculate the center of the player sprite
     */
     calculateCenter: function() {
-        this.center = { x: (this.pos.x * 2 + this.width)/2,
-                        y: (this.pos.y * 2 + this.height)/2 };
+        this.center = { x: ((this.pos.x - me.game.viewport.pos.x ) * 2 + this.width)/2,
+                        y: ((this.pos.y - me.game.viewport.pos.y ) * 2 + this.height)/2 };
     },
 
     /**
@@ -115,6 +115,7 @@ var PlayerEntity = me.ObjectEntity.extend({
     updates the waypoint associated with the player
     ----- */
     updateWaypoint: function(pos) {
+        //console.log(this.center);
         if (pos.x == -1 && pos.y == -1)
         {
             this.waypoint = this.center;
@@ -272,6 +273,7 @@ var EnemyEntity = me.ObjectEntity.extend({
     onCollision: function(res, obj) {
         if (!obj.isInConveration) {
             this.step = 0;
+            obj.saysLast = "";
             obj.isInConveration = true;
  
             $('#sandbox').show();
@@ -284,16 +286,44 @@ var EnemyEntity = me.ObjectEntity.extend({
                 }
             });
         }
-        this.saysLast = this.says;
 
+        if (this.step != 0)
+            this.saysLast = this.says;
+
+        //this.says = this.conversations[this.step].initial;
+
+        if (obj.says != obj.saysLast && this.step < this.conversations.length-1 && 
+            obj.says.toString().match(this.conversations[this.step].expected) != null &&
+            obj.says.toString().indexOf('Error') < 0)
+        {
+            this.step++;
+            obj.saysLast = obj.says;
+            this.says = this.conversations[this.step].initial;
+        }
+        else if (obj.says != obj.saysLast && 
+            obj.says.toString().match(this.conversations[this.step].expected) == null)
+        {
+            this.says = this.conversations[this.step].incorrect;
+            obj.saysLast = obj.says;
+        }
+    
+        /*
         // conversation steps
         switch(this.step) {
             case 0:
+                this.says = this.conversations[0].initial;
+                if (obj.says.match(this.conversations[0].expected) != null)
+                    this.step++;
+                break;
                 this.says = "Hi! (type \"Hi!\" to say hi back)";
                 if (obj.says == 'Hi!')
                     this.step++;
                 break;
             case 1:
+                this.says = this.conversations[0].initial;
+                if (obj.says.match(this.conversations[0].expected) != null)
+                    this.step++;
+                break;
                 this.says = "I\'m Joe. What is your name?";
                 if (obj.says != 'Hi!' && obj.says != obj.saysLast && typeof(obj.says) == "string" && obj.says.indexOf('Error') < 0)
                     this.step++;
@@ -307,6 +337,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             //     this.says = "So... what's up?";
             //     break;
         }
+        */
 
         // only say something if it hasn't already been said
         if (this.saysLast !== this.says) {
@@ -319,10 +350,8 @@ var EnemyEntity = me.ObjectEntity.extend({
             });
             window.sandbox.update();
             obj.saysLast = obj.says;
+            this.saysLast = this.says;
         }
-
-
-        // me.state.pause();
     },
  
     // manage the enemy movement
@@ -341,6 +370,12 @@ var EnemyEntity = me.ObjectEntity.extend({
             return true;
         }
         return false;
+    },
+
+    //updates the convos
+    setConversations: function(convos) {
+       this.conversations = convos;
+       this.says = this.conversations[0].initial;
     }
 });
 

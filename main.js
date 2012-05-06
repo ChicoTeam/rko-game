@@ -5,7 +5,6 @@
 	------					*/
 
 
-
 // define melonJS app
 var jsApp	=
 {
@@ -103,6 +102,7 @@ var jsApp	=
         me.input.registerMouseEvent('mousedown', me.viewport, this.clicked.bind(this));
         me.input.registerMouseEvent('mouseup', me.viewport, this.clicked.bind(this));
 
+
 		// start the game
 		me.state.change(me.state.PLAY);
 		
@@ -115,6 +115,66 @@ var jsApp	=
 
 		// load a level
 		me.levelDirector.loadLevel("village");	
+
+
+        //try loading convos
+        me.game.getEntityByName("enemyentity")[0].setConversations(
+                [{
+                    initial: "Hello, and welcome to Hackman JS. You can move around by touching anywhere on the screen. (try this now)",
+                    expected: /.+/i,
+                    incorrect: "...Is that how you greet people?"
+                },
+                {
+                    initial: "Good, now if you want to get started with the series of tutorials, move to the guardian",
+                    expected: /.+/i,
+                    incorrect: null
+                }]
+            );
+        me.game.getEntityByName("enemyentity")[1].setConversations(
+                [{
+                    initial: "Hi... You do say hi dont you? (Say hi)",
+                    expected: /hi/i,
+                    incorrect: "Well i dont believe that is a hi but that is close enough"
+                },
+                {
+                    initial: "Now in order to test your future capabilities, im going to ask you to perform some basic arithmetic. What is 1 + 1?",
+                    expected: /2/i,
+                    incorrect: "Wow, thats wrong. I think you may not be the one. Try that again..."
+                },
+                {
+                    initial: "Good!, now what are 2 numbers that add up to 10",
+                    expected: /10/i,
+                    incorrect: "Thats very wrong. Have another go at it..."
+                },
+                {
+                    initial: "Great! Now im going to ask you to multiply or divide numbers, but DO NOT calculate them somewhere else. Calculate them using the textbox, its easy",
+                    expected: /[0-9.-]+/i,
+                    incorrect: ""
+                },
+                {
+                    initial: "Im guessing you know how to divide. Try to divide 6324 by 6",
+                    expected: /1054/i,
+                    incorrect: "Nope, try again:"
+                }]
+            );
+
+        //me.game.getEntityByName("enemyentity")[2].setConversations(
+                //[{
+                    //initial: "blah blah?",
+                    //expected: /.*/i,
+                    //incorrect: "BLAH BLAH!"
+                //},
+                //{
+                    //initial: "blah blah?",
+                    //expected: /.*/i,
+                    //incorrect: "BLAH BLAH!"
+                //},
+                //{
+                    //initial: "good luck",
+                    //expected: /.*/i,
+                    //incorrect: null
+                //}]
+            //);
 	},
 
     /* ------
@@ -124,7 +184,7 @@ var jsApp	=
         if (e.type == "mousedown")
         {
             me.game.getEntityByName("mainplayer")[0].updateWaypoint(me.input.mouse.pos);
-            //console.log('down');
+            //console.log(me.input.mouse.pos);
         }
         else if (e.type == "mouseup")
         {
