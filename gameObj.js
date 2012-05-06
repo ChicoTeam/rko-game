@@ -15,7 +15,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.parent(x, y, settings);
  
         // set the walking & jumping speed
-        this.setVelocity(4, 4);
+        this.setVelocity(2, 2);
 
         this.gravity = 0;
 	

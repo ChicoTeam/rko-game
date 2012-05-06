@@ -50,8 +50,8 @@ var jsApp	=
 		var titleHeight = $('#title').height();
 
 		$('#title').css('top',(this.height/2)-titleHeight/2).css('left',(this.width/2)-titleWidth/2);
-		$('#title').click(function(){
-			$(this).remove();
+		$('*').click(function(){
+			$('#title').remove();
 		});
 
 		if (!me.video.init('jsapp', this.width, this.height))
