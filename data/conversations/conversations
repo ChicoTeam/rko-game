@@ -1,3 +1,6 @@
+//basic movement tutorial
+// source of the information comes from a voice from an unseen entity
+// the voice has multiple timbres from different people. At least thats what it sounds like
 m0_intro_convo = 
 	[ {
 			initial_prompt			: "Hello, and welcome to Hackman JS. You can move around by touching anywhere on the screen. (try this now)",
@@ -11,6 +14,7 @@ m0_intro_convo =
 	  }
 	];
 
+// interacting with the NPCs
 m1_q1_convo = 
 	[ {
 			initial_prompt			: "Hi there! I need to talk to you. (Walk toward 'the guardian')",
@@ -20,10 +24,16 @@ m1_q1_convo =
 		{
 			initial_prompt			: "Hi... You do say 'hi' don't you? (Say /"hi/")",
 	    expectected_response:	"hi",
-	    incorrectReply			: "Well i don't believe that is a hi but that is close enough"
+	    incorrectReply			: "Well i don't believe that is 'hi', try again"
+	  }
+	  {
+			initial_prompt			: "HAHA!, i don't beleive it, you speak. Can you say "hello world" for me?",
+	    expectected_response:	"hello world",
+	    incorrectReply			: "Well, i can't ask for everything. Try again."
 	  }
 	];	
 
+//basic arithmetic, input into console.
 m1_q2_convo = 
 	[  {
 			initial_prompt			: "Now in order to test your future capabilities, i'm going to ask you to perform some basic arithmetic",
@@ -53,7 +63,7 @@ m1_q2_convo =
 	   },
 	   {
 			initial_prompt			: "Ok. So using the textbox, multiply these three numbers: 5,10,23",
-	    expectected_response:	"product",
+	    expectected_response:	"1150",
 	    incorrectReply			: "Nope, that's incorrect. You must have not entered the numbers correctly"
 	   },
 	   {
@@ -63,9 +73,51 @@ m1_q2_convo =
 	   }
 	   {
 			initial_prompt			: "Ok, so divide 6234 by 6",
-	    expectected_response:	"answer",
+	    expectected_response:	"1039",
 	    incorrectReply			: "Nope, try again:"
 	   }
-
-
 	];	
+
+// conditionals
+m1_q3_convo = 
+	[
+		{
+			initial_prompt			: "You have learned how to do basic arithmetic that will help you in your later endevours",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now im going to teach you conditional statements. Conditional statements are constructs or ideas that evaluate into \"true\" or \"false\". This will help you in  situations where you want to execute code only when a condition is true, else you will execute other code instead. A non-code example of this is: \"if (objectname) {//code to execute}\" ",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "Now try this. I want you to execute a line of code that i will give you. don't worry if you dont know what it means yet (you will in later quests). I will, however, tell you what it does. What it does is try and unlock the door with the red key that you need to find in the area. There is a property with the door that you need to unlock called 'unlock', which unlocks the door with the key. Here is the line that does this: \"door.unlock(key)\". Now what i need you to do is find the key and write a conditional expression that checks to see if you have the item called \"key\" and then executes the line that i have given you. This will unlock the door if key is the correct key for the door",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "So what you will do is pick up the key and walk into the door, you will essentially start a conversation with the door in which you will execute the code. (which should unlock the door if you have the key)",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+	  {
+			initial_prompt			: "this is the code: if(key) { door.unlock(key) }",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+
+	];
+
+// convo with door
+m1_doorInteract_convo = 
+	[
+		{
+			initial_prompt			: "DOOR PROPERTIES (things you can do to it): unlock, lock, look_through",
+	    expectected_response:	"",
+	    incorrectReply			: ""
+	  },
+
+	];
+
+// variables

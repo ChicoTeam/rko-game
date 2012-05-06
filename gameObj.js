@@ -119,13 +119,16 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (pos.x == -1 && pos.y == -1)
         {
             this.waypoint = this.center;
+	    //me.game.viewport.move(this.center.x-me.game.viewport.getWidth()/2,this.center.y-me.game.viewport.getHeight()/2);		
             //console.log('stop');
         }
         else
         {
             this.waypoint = pos;
+	    //me.game.viewport.move(pos.x-me.game.viewport.getWidth()/2,pos.y-me.game.viewport.getHeight()/2);
             //console.log('start');
         }
+	
     },
 
     /* -----
@@ -208,9 +211,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         var res = me.game.collide(this);
         if (res) {
             // if we collide with an enemy
-            // if (res.obj.type == me.game.ENEMY_OBJECT) {
-            //     console.log("collision");
-            // }
+             if (res.obj.type == me.game.ENEMY_OBJECT) 
+	     {
+		     this.pos.sub(res);
+	     }
+
+            
         }
         else if (this.isInConveration) {
             this.isInConveration = false;
@@ -407,14 +413,15 @@ var ConsoleButton = me.ScreenObject.extend({
                 $('#sandbox').show();
             },150);                 
         }
+        return false;
     },
     // constructor
     init: function(x, y, x_offset, y_offset) {
         this.parent(true);
         this.x = x;
         this.y = y;
-        this.width = 30;
-        this.height = 30;
+        this.width = 45;
+        this.height = 45;
 
         // init button image
         this.image = null;
@@ -449,34 +456,3 @@ var ConsoleButton = me.ScreenObject.extend({
     }
 });
 
-
-
-
-// define custom base object... to be used later?
-var Obj = Object.extend({
-    init: function() {
-        
-    },
-    look: function() {
-        var result = "";
-
-        for(var key in this) {
-            if(typeof this[key] === "function") {
-                if(result.length > 0) {
-                    result += ", ";
-                }
-                result += key + "()";
-            }
-        }
-
-        return result;
-    },
-    // example stuff....
-    // size: 10,
-    // makeBigger: function(size) {
-    //  if(!size)
-    //      return "Usage: makeBigger(size)";
-    //  else
-    //      return this.size + size;
-    // }
-});
