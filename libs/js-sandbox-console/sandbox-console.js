@@ -204,9 +204,11 @@ var Sandbox = {
 		
 		// Updates the Sandbox View, redrawing the output and checking the input's value
 		update : function() {
+			var history = _.clone(this.model.get('history'));
+
 			this.output.html(
 				// Reduce the Model's history into HTML, using the command format templating function
-				_.reduce(this.model.get('history'), function(memo, command) {
+				_.reduce(history.reverse(), function(memo, command) {
 					return memo + this.format({
 						_hidden : command._hidden,
 						_class : command._class,
@@ -221,9 +223,9 @@ var Sandbox = {
 			this.textarea.val(this.currentHistory).attr('rows', this.currentHistory.split("\n").length);
 
 			// Scroll the output to the bottom, so that new commands are visible
-			this.output.scrollTop(
-				this.output[0].scrollHeight - this.output.height()
-			);
+			// this.output.scrollTop(
+			// 	this.output[0].scrollHeight - this.output.height()
+			// );
 		},
 
 		// Manually set the value in the sandbox textarea and focus it ready to submit:
