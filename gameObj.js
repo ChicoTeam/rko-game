@@ -277,6 +277,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             obj.isInConveration = true;
  
             $('#sandbox').show();
+            //jsApp.clicked({type:"mouseup"});
             window.sandbox.model.destroy();
             window.sandbox.model.on('sync', function(){
                 var lastHistory = _.last(window.sandbox.model.get('history'));
@@ -455,4 +456,6 @@ var ConsoleButton = me.ScreenObject.extend({
     
     }
 });
+
+
 

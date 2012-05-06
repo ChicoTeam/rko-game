@@ -4,6 +4,7 @@
 	
 	------					*/
 
+
 // define melonJS app
 var jsApp	=
 {Files
@@ -44,6 +45,14 @@ var jsApp	=
 		$('#consoleButton').css('margin-left',this.width-50);
 		$('#sandbox .output').css('width',this.width-50);
 		$('#sandbox .input').css('width',this.width-70);
+
+		var titleWidth = $('#title').width();
+		var titleHeight = $('#title').height();
+
+		$('#title').css('top',(this.height/2)-titleHeight/2).css('left',(this.width/2)-titleWidth/2);
+		$('#title').click(function(){
+			$(this).remove();
+		});
 
 		if (!me.video.init('jsapp', this.width, this.height))
 		{
