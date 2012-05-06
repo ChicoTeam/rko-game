@@ -17,6 +17,22 @@
 			top:0px;
 			z-index:1000;
 		}
+		#title {
+			display:block;
+			background-color:black;
+			padding:20px;
+			position: absolute;
+			top:0px;
+			left:0px;
+			z-index:1000;
+			font-size:18px;
+			font-family:"Courier New";
+			width:200px;
+			height:100px;
+			text-align:center;
+			border:double;
+			border-color:white;
+		}
 	</style>
 </head>
 <body>
@@ -72,13 +88,19 @@
 				var $this = $(this);
 				$this.val($this.val().toLowerCase());
 			});
+
+
 		});
 	</script>	
 
 	<!-- END: js sandbox console stuff -->
 
-
-	
+	<!-- title screen -->
+	<div id="title">
+		HackmanJS<br />
+		<br />
+		A learn to program RPG
+	</div>
 
 	<!-- BEGIN: melon js stuff -->
 	<div id="jsapp">
