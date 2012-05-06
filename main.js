@@ -7,7 +7,7 @@
 
 // define melonJS app
 var jsApp	=
-{Files
+{
 	// Initialize the jsApp
 	onload: function()
 	{
